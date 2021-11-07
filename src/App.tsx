@@ -1,32 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { AddTaskAndFilterContainer } from './components/AddTaskAndFilterContainer';
+import { createTask, Task } from './models/Task';
+import { Tasks } from './components/Tasks';
 
 function App() {
+  const [disableFilterCheckbox, setDisableFilterCheckbox] = useState(false);
+  const [input, setInput] = useState("");
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const addTask = (text: string) => {
+    const newTasks = [...tasks, createTask(text)];
+    setTasks(newTasks);
+    updateInput("");
+  }
+
+  const deleteTask = (id: string) => {
+    const newTasks = tasks.filter(task => task.id !== id)
+    setTasks(newTasks);
+  }
+
+  const updateInput = (text: string) => {
+    setInput(text);
+  }
+
+  const updateFiterCheckbox = (checked: boolean) => {
+    setDisableFilterCheckbox(checked);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <div className="Title">
-          Todo App
-        </div>
-
-        <div className="inputContainer">
-          <div className="addTaskContainer">
-            <input className="input" type ="text" placeholder="Aufgabe..."/>
-            <button className="addButton">Hinzufügen</button>
-          </div>
-          <input className="showAllCheckbox" type="checkbox"/>
-          <div>Alle Anzeigen</div>
-        </div>
-        
-        <div className="taskEntry">
-          <input className="checkbox" type="checkbox"/>
-          <p> &#9889;</p>
-        </div>
-
+        <div className="title">Todo App</div>
       </header>
+
       <body>
-        <div>3</div>
+      <AddTaskAndFilterContainer onClick={addTask} input={input} onChange={updateInput} onCheckboxChange={updateFiterCheckbox}/>
+      <Tasks tasks={disableFilterCheckbox ? tasks : tasks.filter(task => task.text.includes(input))} onDelete={deleteTask}/>
       </body>
     </div>
   );

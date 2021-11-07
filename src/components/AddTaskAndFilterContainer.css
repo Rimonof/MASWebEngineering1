@@ -1,0 +1,12 @@
+.addTaskContainer {
+    margin-top: 25px;
+    border-color: #3aafa9;
+  }
+
+.showAllTaskContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -180px;
+  }
+  

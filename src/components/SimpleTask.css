@@ -1,0 +1,43 @@
+.taskContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.smallText.task {
+    text-align: start;
+    width: 150px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.smallText.task.lineThrough {
+    text-decoration: line-through;
+    text-decoration-style: solid;
+}
+
+.checkbox.task {
+    margin-right: 7px;
+}
+
+.button.task {
+    margin-left: 7px;
+}
+
+.boltActive {
+    border: transparent;
+    background-color: transparent;
+    padding: 0px;
+    cursor: pointer;
+    color: #3aafa9;
+}
+
+.boltInactive {
+    border: transparent;
+    background-color: transparent;
+    padding: 0px;
+    cursor: pointer;
+    color: aquamarine;
+}
